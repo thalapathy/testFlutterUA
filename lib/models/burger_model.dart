@@ -15,6 +15,22 @@ class Burger extends Equatable {
     required this.price,
   });
 
+  Burger copyWith({
+    String? ref,
+    String? title,
+    String? description,
+    int? price,
+    String? thumbnail,
+  }) {
+    return Burger(
+      ref: ref ?? this.ref,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      price: price ?? this.price,
+      thumbnail: thumbnail ?? this.thumbnail,
+    );
+  }
+
   @override
   List<Object?> get props => [ref, title, description, thumbnail, price];
 }
