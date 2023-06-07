@@ -19,7 +19,20 @@ class MenuScreen extends StatelessWidget {
           if (state.isLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state.isError) {
-            return const Center(child: Text('Failed to fetch menu'));
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Failed to fetch menu'),
+                  ElevatedButton(
+                    onPressed: () {
+                      BlocProvider.of<MenuCubit>(context).fetchMenu();
+                    },
+                    child: const Text('Retry'),
+                  ),
+                ],
+              ),
+            );
           } else {
             return ListView.builder(
               itemCount: state.burgers.length,
