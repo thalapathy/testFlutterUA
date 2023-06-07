@@ -15,7 +15,7 @@ class MenuState {
     required this.isError,
   });
 
-  factory MenuState.initial() => MenuState(
+  factory MenuState.initial() => const MenuState(
         burgers: [],
         isLoading: false,
         isError: false,

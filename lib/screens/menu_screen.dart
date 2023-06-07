@@ -23,12 +23,12 @@ class MenuScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Failed to fetch menu'),
+                  const Text('Une erreur est survenue, veuillez réessayer svp'),
                   ElevatedButton(
                     onPressed: () {
                       BlocProvider.of<MenuCubit>(context).fetchMenu();
                     },
-                    child: const Text('Retry'),
+                    child: const Text('réessayer'),
                   ),
                 ],
               ),
@@ -107,7 +107,7 @@ class MenuScreen extends StatelessWidget {
                     );
                   },
                   leading: burger.thumbnail != null
-                      ? Container(
+                      ? SizedBox(
                           width: 100.0,
                           height: 100.0,
                           child: Image.network(
@@ -139,7 +139,7 @@ class MenuScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CartScreen(),
+                  builder: (context) => const CartScreen(),
                 ),
               );
             },

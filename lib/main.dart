@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cubits/cart_cubit.dart';
 import 'cubits/menu_cubit.dart';
-import 'models/burger_model.dart';
 import 'screens/cart_screen.dart';
 
 void main() {
@@ -30,8 +29,8 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          '/': (context) => MenuScreen(),
-          '/cart': (context) => CartScreen(),
+          '/': (context) => const MenuScreen(),
+          '/cart': (context) => const CartScreen(),
         },
       ),
     );
