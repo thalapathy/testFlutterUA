@@ -96,7 +96,6 @@ class MenuScreen extends StatelessWidget {
                                         child: const Text('Ajouter au panier'),
                                       );
                                     },
-                                    child: const Text('Ajouter au panier'),
                                   ),
                                 ],
                               ),
@@ -130,23 +129,25 @@ class MenuScreen extends StatelessWidget {
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CartScreen(),
+      floatingActionButton: BlocConsumer<CartCubit, CartState>(
+        listener: (context, state) {
+        },
+        builder: (context, state) {
+          return FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CartScreen(),
+                ),
+              );
+            },
+            child: Text(
+              state.cartItems.length.toString(),
+              style: const TextStyle(fontSize: 18.0),
             ),
           );
         },
-        child: BlocBuilder<CartCubit, CartState>(
-          builder: (context, state) {
-            return Text(
-              state.cartItems.length.toString(),
-              style: const TextStyle(fontSize: 18.0),
-            );
-          },
-        ),
       ),
     );
   }

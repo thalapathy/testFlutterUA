@@ -29,7 +29,14 @@ class ClearCartEvent extends CartEvent {}
 class CartCubit extends Cubit<CartState> {
   final CartRepository _cartRepository = CartRepository();
 
-  CartCubit() : super(CartState.initial());
+  CartCubit() : super(CartState.initial()) {
+    getCartItemsFromSharedPreferences();
+  }
+
+   void getCartItemsFromSharedPreferences() async {
+    final cartItems = await _cartRepository.getCartItems();
+    emit(CartState(cartItems));
+  }
 
   void addToCart(String ref) async {
     await _cartRepository.addToCart(ref);
@@ -48,7 +55,7 @@ class CartCubit extends Cubit<CartState> {
   }
 
   Future<int> getCartItemCount() async {
-    final cartItems = await _cartRepository.getCartItems();
-    return cartItems.length;
-  }
+  final cartItems = await _cartRepository.getCartItems();
+  return cartItems.length;
+}
 }
