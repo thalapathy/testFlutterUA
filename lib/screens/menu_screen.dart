@@ -92,6 +92,7 @@ class MenuScreen extends StatelessWidget {
                                         onPressed: () {
                                           BlocProvider.of<CartCubit>(context)
                                               .addToCart(burger.ref);
+                                              Navigator.pop(context);
                                         },
                                         child: const Text('Ajouter au panier'),
                                       );
