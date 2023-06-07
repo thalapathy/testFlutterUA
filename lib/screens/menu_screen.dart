@@ -86,10 +86,15 @@ class MenuScreen extends StatelessWidget {
                                       fontSize: 16.0,
                                     ),
                                   ),
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      BlocProvider.of<CartCubit>(context)
-                                          .addToCart(burger.ref);
+                                  Builder(
+                                    builder: (BuildContext context) {
+                                      return ElevatedButton(
+                                        onPressed: () {
+                                          BlocProvider.of<CartCubit>(context)
+                                              .addToCart(burger.ref);
+                                        },
+                                        child: const Text('Ajouter au panier'),
+                                      );
                                     },
                                     child: const Text('Ajouter au panier'),
                                   ),

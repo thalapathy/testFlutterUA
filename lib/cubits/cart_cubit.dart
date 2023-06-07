@@ -31,9 +31,10 @@ class CartCubit extends Cubit<CartState> {
 
   CartCubit() : super(CartState.initial());
 
-  Future<void> addToCart(String ref) async {
-    _cartRepository.addToCart(ref);
-    emit(CartState(await _cartRepository.getCartItems()));
+  void addToCart(String ref) async {
+    await _cartRepository.addToCart(ref);
+    final cartItems = await _cartRepository.getCartItems();
+    emit(CartState(cartItems));
   }
 
   Future<void> removeFromCart(String ref) async {
@@ -46,7 +47,8 @@ class CartCubit extends Cubit<CartState> {
     emit(CartState(await _cartRepository.getCartItems()));
   }
 
-  Future<List<String>> getCartItems() async {
-    return _cartRepository.getCartItems();
+  Future<int> getCartItemCount() async {
+    final cartItems = await _cartRepository.getCartItems();
+    return cartItems.length;
   }
 }
